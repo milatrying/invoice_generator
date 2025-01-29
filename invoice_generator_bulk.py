@@ -1,6 +1,7 @@
 import os
 import urllib.parse
 import pandas as pd
+import argparse
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -97,10 +98,12 @@ def generate_urls_from_csv(csv_file):
 
 if __name__ == "__main__":
     # Specify the path to your CSV file
-    csv_file = 'input.csv'  # Path to your CSV file
+    parser = argparse.ArgumentParser(description="Generate invoices from a CSV file.")
+    parser.add_argument('csv_file', type=str, help="Path to the input CSV file")
+    args = parser.parse_args()
 
-    # Generate URLs from the CSV
-    generate_urls_from_csv(csv_file)
+    # Generate URLs from the provided CSV
+    generate_urls_from_csv(args.csv_file)
     
     # Start the Flask app
     app.run(debug=False)
