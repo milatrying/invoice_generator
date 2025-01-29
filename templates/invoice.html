@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice - {{ invoice_number }}_{{ band_name }}_{{ date }}</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Futura';
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            padding: 30px;
+            background-color: #fff;
+
+        }
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            color: #333;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin:1px
+        }
+        strong {
+            font-weight: bold;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+            color: #333;
+            font-weight: bold;
+        }
+        td {
+            background-color: #fff;
+        }
+        .total {
+            font-weight: bold;
+        }
+        
+        div {
+        	margin: 5px;
+        }
+
+        img {
+            width: 150px;
+            display: block;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="total">
+        <h1>Invoice</h1>
+        <div style="display:flex; flex-basis: 100%; flex-direction: row; justify-content: space-between;">
+        <!-- Business Details ---> 
+            <div style="width: 100%;">
+                <p><strong>***REMOVED***  Company Name</strong></p>
+                <p> Company Address</p>
+                <p> Company Address</p>
+                <p> Company Email</p>
+                <p> Company Phone Number</p>
+            </div>
+        <!-- Invoice Details -->
+            <div style="width: 100%;">
+            <p><strong>Invoice Number:</strong> {{ invoice_number }}</p>
+            <p><strong>Invoice Date:</strong> {{ date }}</p>
+            <p><strong>Payment Due Date:</strong> {{ payment_due }}</p>
+            </div>
+        </div>
+                
+        <br>
+        <hr>
+
+        <div id="client_details"> 
+            <!-- Client Details -->
+            <p><strong>{{ band_name }}</strong></p>
+            <p class="extra_details">{{ client_name }}</p>
+            <p class="extra_details">{{ client_email }}</p>
+            <p class="extra_details">{{ client_phone }}</p>
+        </div>
+        <br>
+        <hr>
+        <!-- Invoice Items Table -->
+        <table>
+            <tr>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.total }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="3" class="total" style="text-align: right;">Total Amount Due</td>
+                <td class="total">{{ total_amount }}</td>
+            </tr>
+        </table>
+
+        <!-- Payment Details Section -->
+        <br>
+        <hr>
+        <div>
+            <h2>Payment Details</h2>
+            <p><strong>Bank Name:</strong> ***REMOVED***</p>
+            <p><strong>Account Name:</strong> ***REMOVED*** </p>
+            <p><strong>Account Number:</strong> ***REMOVED***</p>
+            <p><strong>Sort Code:</strong> ***REMOVED***</p>
+        </div>
+        <h2 style="text-align: center;">THANK YOU FOR YOUR VISIT</h2>
+        <img src="{{ url_for('static', filename='bh_logo.png') }}" alt="***REMOVED*** Logo" style="width: 100px; height: auto;">
+    </div>
+</body>
+</html>
