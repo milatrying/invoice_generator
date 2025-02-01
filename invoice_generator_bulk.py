@@ -53,6 +53,9 @@ def generate_urls_from_csv(csv_file):
     # Read the CSV file
     df = pd.read_csv(csv_file)
 
+    # Replace nan values with None
+    df = df.replace({float('nan'): None})
+
     # Loop through each row in the CSV and generate the URL
     for index, row in df.iterrows():
         # Extract data from the row
@@ -85,7 +88,7 @@ def generate_urls_from_csv(csv_file):
         # URL encode items
         item_data = []
         for item in items:
-            item_data.append(f"item_name[]={urllib.parse.quote(item['name'])}")
+            item_data.append(f"item_name[]={urllib.parse.quote(str(item['name']))}")
             item_data.append(f"quantity[]={item['quantity']}")
             item_data.append(f"price[]={item['price']}")
 
