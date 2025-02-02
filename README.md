@@ -1,7 +1,9 @@
 # Invoice Generator
 
 A Python-based application designed to streamline the creation of professional invoices with ease.
-Within this repo there are two approaches to creating a 
+Within this repo there are two approaches to creating invoices:
+1. One at a time, using inputs via the terminal
+2. Bulk using a csv (template found [here](input.csv)
 
 ## Table of Contents
 
