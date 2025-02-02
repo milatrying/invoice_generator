@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice - {{ invoice_number }}_{{ band_name }}_{{ date }}</title>
+    <title>Invoice - {{ invoice_number }}_{{ client_company_name }}_{{ date }}</title>
     <style>
         /* Global Styles */
         body {
@@ -100,7 +100,7 @@
 
         <div id="client_details"> 
             <!-- Client Details -->
-            <p><strong>{{ band_name }}</strong></p>
+            <p><strong>{{ client_company_name }}</strong></p>
             <p class="extra_details">{{ client_name }}</p>
             <p class="extra_details">{{ client_email }}</p>
             <p class="extra_details">{{ client_phone }}</p>

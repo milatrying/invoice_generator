@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     # Client Details
-    band_name = request.args.get("band_name", "Band Name")
+    client_company_name = request.args.get("client_company_name", "Client Company Name")
     client_name = request.args.get("client_name", "Client Name")
     client_email = request.args.get("client_email", "Client Email")
     client_phone = request.args.get("client_phone", "Client Phone")
@@ -36,7 +36,7 @@ def home():
         total_amount += total
 
     return render_template("invoice.html", 
-                           band_name=band_name, 
+                           client_company_name=client_company_name, 
                            client_name=client_name, 
                            client_email=client_email, 
                            client_phone=client_phone, 
@@ -49,7 +49,7 @@ def home():
 
 def get_input():
     print("Enter client details:")
-    band_name = input("Band Name: ")
+    client_company_name = input("Client Company Name: ")
     client_name = input("Client Name: ")
     client_email = input("Client Email: ")
     client_phone = input("Client Phone: ")
@@ -71,7 +71,7 @@ def get_input():
         items.append({"name": item_name, "quantity": quantity, "price": price})
     
     # URL-encode the parameters
-    band_name_encoded = urllib.parse.quote(band_name)
+    client_company_name_encoded = urllib.parse.quote(client_company_name)
     client_name_encoded = urllib.parse.quote(client_name)
     client_email_encoded = urllib.parse.quote(client_email)
     client_phone_encoded = urllib.parse.quote(client_phone)
@@ -87,7 +87,7 @@ def get_input():
         item_data.append(f"price[]={item['price']}")
 
     # Construct the URL with encoded parameters
-    url = f"http://127.0.0.1:5000/?band_name={band_name_encoded}&client_name={client_name_encoded}&client_email={client_email_encoded}&client_phone={client_phone_encoded}&invoice_number={invoice_number_encoded}&date={date_encoded}&payment_due={payment_due_encoded}&" + "&".join(item_data)
+    url = f"http://127.0.0.1:5000/?client_company_name={client_company_name_encoded}&client_name={client_name_encoded}&client_email={client_email_encoded}&client_phone={client_phone_encoded}&invoice_number={invoice_number_encoded}&date={date_encoded}&payment_due={payment_due_encoded}&" + "&".join(item_data)
 
     print("\nOpen the following URL in your browser:")
     print(url)
